@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MiniShop – Everyday finds, delivered</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#" class="logo" aria-label="MiniShop home"><span class="logo-mark">M</span>MiniShop</a>
+    <form class="search" role="search" onsubmit="return false">
+      <label for="searchInput" class="sr-only">Search products</label>
+      <input id="searchInput" type="search" placeholder="Search products by name" autocomplete="off">
+    </form>
+    <a href="#cartSection" class="cart-link" aria-label="Go to cart">
+      Cart <span id="cartCount" class="badge" aria-live="polite">0</span>
+    </a>
+  </header>
+
+  <section class="hero">
+    <h1>Everyday finds, priced in rupees.</h1>
+    <p>Free delivery on orders of ₹999 and above. A practice store built with plain JavaScript.</p>
+  </section>
+
+  <main class="layout">
+    <section aria-labelledby="catalogueTitle">
+      <div class="toolbar">
+        <h2 id="catalogueTitle" class="sr-only">Products</h2>
+        <div class="field">
+          <label for="categoryFilter">Category</label>
+          <select id="categoryFilter"></select>
+        </div>
+        <div class="field">
+          <label for="sortSelect">Sort by price</label>
+          <select id="sortSelect">
+            <option value="default">Featured</option>
+            <option value="low">Low to high</option>
+            <option value="high">High to low</option>
+          </select>
+        </div>
+        <p id="resultCount" class="result-count" aria-live="polite"></p>
+      </div>
+      <div id="productGrid" class="grid"></div>
+    </section>
+
+    <aside id="cartSection" class="cart" aria-labelledby="cartTitle">
+      <h2 id="cartTitle">Your cart</h2>
+      <div id="cartItems"></div>
+      <dl class="summary">
+        <div><dt>Subtotal</dt><dd id="subtotal">₹0.00</dd></div>
+        <div><dt>Delivery</dt><dd id="delivery">₹0.00</dd></div>
+        <div class="grand"><dt>Total</dt><dd id="grandTotal">₹0.00</dd></div>
+      </dl>
+      <p id="deliveryHint" class="hint"></p>
+      <button id="checkoutBtn" class="btn btn-primary btn-block" disabled>Checkout</button>
+    </aside>
+  </main>
+
+  <!-- Checkout preview (native <dialog>) -->
+  <dialog id="checkoutDialog" aria-labelledby="dialogTitle">
+    <div id="checkoutView">
+      <div class="dialog-head">
+        <h2 id="dialogTitle">Order summary</h2>
+        <button id="closeDialogBtn" class="icon-btn" aria-label="Close checkout">✕</button>
+      </div>
+      <p class="notice" role="note">Demo Checkout – This is a practice project. No real payment will be collected.</p>
+      <div id="orderLines"></div>
+      <dl class="summary">
+        <div><dt>Subtotal</dt><dd id="dlgSubtotal"></dd></div>
+        <div><dt>Delivery fee</dt><dd id="dlgDelivery"></dd></div>
+        <div class="grand"><dt>Grand total</dt><dd id="dlgTotal"></dd></div>
+      </dl>
+      <div class="dialog-actions">
+        <button id="continueBtn" class="btn">Continue Shopping</button>
+        <button id="confirmBtn" class="btn btn-primary">Confirm Demo Order</button>
+      </div>
+    </div>
+    <div id="successView" hidden>
+      <div class="success">
+        <div class="tick" aria-hidden="true">✓</div>
+        <h2>Demo order confirmed</h2>
+        <p id="successText"></p>
+        <p class="hint">No payment was taken and nothing will be shipped.</p>
+        <button id="doneBtn" class="btn btn-primary">Back to shop</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
